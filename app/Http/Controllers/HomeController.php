@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use SoareCostin\FileVault\Facades\FileVault;
 
 class HomeController extends Controller
 {
