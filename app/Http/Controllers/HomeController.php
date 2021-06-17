@@ -38,7 +38,7 @@ class HomeController extends Controller
             $fileName=uniqid();
             $encryption_key=$request->userKey;
             //$iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length(AES_256_CBC));
-            $iv = openssl_random_pseudo_bytes($request->userIv);
+            $iv = openssl_random_pseudo_bytes(16);
             Storage::disk('local')->put($fileName.'iv.txt', $iv);
             $inputFile=$request->file('userFile');
             $data = file_get_contents($inputFile);
@@ -61,12 +61,10 @@ class HomeController extends Controller
             $file_to_decrypt=$request->file('userFile');
             $data = file_get_contents($file_to_decrypt);
 
-            $iv=file_get_contents($request->file('userIvFile'));
-            $encrypted = $data . ':' . base64_encode($iv);
+            $key = hex2bin($encryption_key);
+            $iv = hex2bin('00000000000000000000000000000000');
 
-            $parts = explode(':', $encrypted);
-
-            $decrypted = openssl_decrypt($parts[0], AES_256_CBC, $encryption_key, 0, base64_decode( $parts[1]));
+            $decrypted = openssl_decrypt($data, AES_256_CBC, $key, OPENSSL_RAW_DATA, $iv);
             Storage::disk('local')->put($fileName.'decrypted.txt', $decrypted);
             Session::put('decrypted_file_name',$fileName.'decrypted.txt');
             return redirect()->route('dec-home')->with('message_decr', 'Decryption complete');

@@ -14,7 +14,6 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
                         <form action="{{ route('dec.home.post') }}" method="post" enctype="multipart/form-data" class="my-4">
                             @csrf
 
@@ -24,12 +23,12 @@
                                     <label class="custom-file-label" for="userFile">Choose a file</label>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="userFile" name="userIvFile">
-                                    <label class="custom-file-label" for="userFile">Choose a IV file</label>
-                                </div>
-                            </div>
+{{--                            <div class="form-group">--}}
+{{--                                <div class="custom-file">--}}
+{{--                                    <input type="file" class="custom-file-input" id="userFile" name="userIvFile">--}}
+{{--                                    <label class="custom-file-label" for="userFile">Choose a IV file</label>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="form-group">
                                 <label for="enc_key">Encryption Key</label>
                                 <input

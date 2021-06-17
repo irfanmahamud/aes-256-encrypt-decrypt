@@ -14,7 +14,6 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
                         <form action="{{ route('uploadFile') }}" method="post" enctype="multipart/form-data" class="my-4">
                             @csrf
 
@@ -35,17 +34,17 @@
                                   :class="{ 'is-invalid': submitted && $v.form.last_name.$error }"
                               />
                           </div>
-                           <div class="form-group">
-                               <label for="iv_key">IV Length</label>
-                               <input
-                                   id="iv_key"
-                                   name="userIv"
-                                   type="text"
-                                   class="form-control"
-                                   placeholder="Iv Length"
-                                   :class="{ 'is-invalid': submitted && $v.form.last_name.$error }"
-                               />
-                           </div>
+{{--                           <div class="form-group">--}}
+{{--                               <label for="iv_key">IV Length</label>--}}
+{{--                               <input--}}
+{{--                                   id="iv_key"--}}
+{{--                                   name="userIv"--}}
+{{--                                   type="text"--}}
+{{--                                   class="form-control"--}}
+{{--                                   placeholder="Iv Length"--}}
+{{--                                   :class="{ 'is-invalid': submitted && $v.form.last_name.$error }"--}}
+{{--                               />--}}
+{{--                           </div>--}}
                             <button type="submit" class="btn btn-primary">Upload</button>
 
                             @if (session()->has('message'))
